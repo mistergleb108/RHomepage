@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RHomepage - Хаб-страница</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(30, 30, 30, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 85% 30%, rgba(40, 40, 40, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 80%, rgba(25, 25, 25, 0.1) 0%, transparent 20%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .logo-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .main-logo {
+            height: 60px;
+            width: auto;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .app-card {
+            background: linear-gradient(145deg, #151515, #0f0f0f);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #252525;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: #383838;
+        }
+        
+        .app-header {
+            padding: 25px 25px 15px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        
+        .app-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        
+        .app-description {
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.5;
+        }
+        
+        .app-content {
+            padding: 0 25px 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .app-button {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            text-align: center;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            margin-top: auto;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .app-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .button-icon {
+            font-size: 1.2rem;
+        }
+        
+        .rtranslator-btn {
+            background: linear-gradient(135deg, #192e50, #0f1d35);
+            color: #e0f0ff;
+            border: 1px solid #2a4266;
+        }
+        
+        .rtranslator-btn:hover {
+            background: linear-gradient(135deg, #1f3760, #132342);
+            color: #ffffff;
+        }
+        
+        .rlist-btn {
+            background: linear-gradient(135deg, #24532b, #1a3a20);
+            color: #e0ffe4;
+            border: 1px solid #2e6b38;
+        }
+        
+        .rlist-btn:hover {
+            background: linear-gradient(135deg, #2a6432, #204927);
+            color: #ffffff;
+        }
+        
+        .rpaste-btn {
+            background: linear-gradient(135deg, #d45a1a, #a94714);
+            color: #fff2e8;
+            border: 1px solid #e06c2c;
+        }
+        
+        .rpaste-btn:hover {
+            background: linear-gradient(135deg, #e96b25, #c0551b);
+            color: #ffffff;
+        }
+        
+        .coming-soon-btn {
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            color: #aaa;
+            border: 1px solid #383838;
+            cursor: default;
+        }
+        
+        .coming-soon-btn:hover {
+            transform: none;
+            box-shadow: none;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+        }
+        
+        .coming-soon-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #333333, #222222);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .apps-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .main-logo {
+                height: 50px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .app-header {
+                padding: 20px 20px 15px;
+            }
+            
+            .app-content {
+                padding: 0 20px 20px;
+            }
+            
+            .main-logo {
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-header">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABACAYAAADS1n9/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJJSURBVHhe7do9coMwEAXgjUtzDTeuOIjKTKhd03MBt+qpXeOag1C50TVcO03EiBWxIcYE8943o5kgfobiaSU5fGy325sQrI3uICwMADgGABwDAI4BAMcAgGMAwDEA4BgAcAwAOAYA3If+X8DpdAoPF+dwOOguegIrADgGABwDAI4BAMcAgBscgJtsXt5ofoO3gTfZSPb1qbsndT6fdVeE28BpcdiBYwDALSoAl8ulbTSPRQWA5vf2Abher23r8+j8GHmed57X15qm0beJjHiPpmmiZ/qW57m+XKqqiq7zraoqfXnk7QNAz1lVAMIRNmS0DeVHvrVWnHOSJMmvLU3Tzr1D38OP/N1uJ0VRRM91zom1tn2WH/nGGKnrOrq+rmsxxjysBKsKAI23qgAkSSLyM+rC41A4x+rjoaPV61sT6DWAH5F/FVaGV1hVAGi81QUgnAcf8SNLz7VDK0FZlpIkiRRFoU89Ta8JnHOd81mWRXN92MK1QZZlnXtDqwsAjQMdgL5KkaZpb/+crLWd3UBZlvoS7gJoGgzAAt0b+VNjAMAt6oOQ4/HY/r3f7zvnPP1BSLha75u39fmmado9dd/19+R5LtZa3S0iIs65zq+AQ3YRXvge4ftpRVFEVaGqKjHGdPq8uq7v7gCEFYDevgLQc1gBwDEA4BgAcAwAuMGLQO3VH25yETgPVgBwDAC4P08B/4VTwLRYAcAxAOAYAHAMADgGAFy0CyAsrADgGABwDAA4BgAcAwCOAQDHAIBjAMAxAOAYAHAMALhvFx53Eg7LbC0AAAAASUVORK5CYII=" />            </div>
+            <p class="subtitle">Централизованный доступ к полезным инструментам и приложениям. Выберите нужный сервис для перехода.</p>
+        </header>
+        
+        <div class="apps-grid">
+            <!-- RTranslator Card -->
+            <div class="app-card">
+                <div class="app-header">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC9SURBVGhD7dgxCsJAEEDRJJWpLLyFeAYhd7JO4cUED+EtLKxiaSFaTJplg/kO/EeqSfXZZVm2PQynJrMuDrIxgGYAzQCaATQDaG3JXWg7nONoFY/LGEcz6VfAAJoBtMpT6Ljvw6Ta9TbF0YenUAZ8wH3avL/4owwfsJABNANoBtAMoBlAM4BmAM0AmgE0A2iVD1tf1a8Jc7v+GSY+bGWwdAv9lFsoAwNo6QOKTqF/ln4FDKAZQDOAZgDNANoLBfAdhbj+kiIAAAAASUVORK5CYII=" alt="RTranslator Logo" class="app-logo">
+                    <div>
+                        <div class="app-title">RTranslator</div>
+                        <div class="app-description">Переводчик раскладки</div>
+                    </div>
+                </div>
+                <div class="app-content">
+                    <a href="https://mistergleb108.github.io/RTranslator/" target="_blank" class="app-button rtranslator-btn">
+                        <i class="fas fa-external-link-alt button-icon"></i> Перейти к RTranslator
+                    </a>
+                </div>
+            </div>
+            
+            <!-- RList Card -->
+            <div class="app-card">
+                <div class="app-header">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADoSURBVHhe7ZmxDcIwFAWdzBE6OjZAMAWLZJQMlU3IHqGjOBCSJUcE7p3k5sqTrS/b3fF2WouYnsJGAlDYSAAKGwlAYSMBKGwkAIWNrvYuMI4j1a6YponqI/odkAAUNhKAwkazAGvpN19b0GwMrqUv18uZuinzPFO9kDFYSQJQ7Jn7sjxXK34qwBYkAIWNBKCwkQAUNhKAwkYCUNhIAAobCUBhIwEobCQAhQ19gGb/AqTlw+U7DsNAVUr+BerRB9jsCHyLHIFKEoDCRgJQ2KieAv+GfgckAIWNBKCwkQAUNhKAwkYCUNh4AKVTPlsOukVOAAAAAElFTkSuQmCC" alt="RList Logo" class="app-logo">
+                    <div>
+                        <div class="app-title">RList</div>
+                        <div class="app-description">Интерактивные списки</div>
+                    </div>
+                </div>
+                <div class="app-content">
+                    <a href="https://mistergleb108.github.io/RList/" target="_blank" class="app-button rlist-btn">
+                        <i class="fas fa-external-link-alt button-icon"></i> Перейти к RList
+                    </a>
+                </div>
+            </div>
+            
+            <!-- RPaste Card (оранжевое) -->
+            <div class="app-card">
+                <div class="app-header">
+                    <div class="coming-soon-logo" style="background: linear-gradient(135deg, #d45a1a, #a94714);">
+                        <i class="fas fa-search" style="font-size: 1.8rem; color: #fff;"></i>
+                    </div>
+                    <div>
+                        <div class="app-title">RPaste</div>
+                        <div class="app-description">Поиск с шаблонами</div>
+                    </div>
+                </div>
+                <div class="app-content">
+                    <div class="app-button coming-soon-btn">
+                        <i class="fas fa-clock button-icon"></i> Будет позже
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Серая карточка 1 -->
+            <div class="app-card">
+                <div class="app-header">
+                    <div class="coming-soon-logo">
+                        <i class="fas fa-tools" style="font-size: 1.8rem; color: #aaa;"></i>
+                    </div>
+                    <div>
+                        <div class="app-title">Скоро появится</div>
+                        <div class="app-description">Новый инструмент</div>
+                    </div>
+                </div>
+                <div class="app-content">
+                    <div class="app-button coming-soon-btn">
+                        <i class="fas fa-clock button-icon"></i> Будет позже
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Серая карточка 2 -->
+            <div class="app-card">
+                <div class="app-header">
+                    <div class="coming-soon-logo">
+                        <i class="fas fa-cog" style="font-size: 1.8rem; color: #aaa;"></i>
+                    </div>
+                    <div>
+                        <div class="app-title">Скоро появится</div>
+                        <div class="app-description">Новое приложение</div>
+                    </div>
+                </div>
+                <div class="app-content">
+                    <div class="app-button coming-soon-btn">
+                        <i class="fas fa-clock button-icon"></i> Будет позже
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Серая карточка 3 -->
+            <div class="app-card">
+                <div class="app-header">
+                    <div class="coming-soon-logo">
+                        <i class="fas fa-rocket" style="font-size: 1.8rem; color: #aaa;"></i>
+                    </div>
+                    <div>
+                        <div class="app-title">Скоро появится</div>
+                        <div class="app-description">Новый сервис</div>
+                    </div>
+                </div>
+                <div class="app-content">
+                    <div class="app-button coming-soon-btn">
+                        <i class="fas fa-clock button-icon"></i> Будет позже
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Хаб-страница MrG108 2026 | И да была использована нейросеть</p>
+        </footer>
+    </div>
+
+    <script>
+        // Добавляем интерактивности при наведении на карточки
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.app-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+            
+            // Анимация появления карточек с увеличенной скоростью
+            const appCards = document.querySelectorAll('.app-card');
+            appCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(15px)';
+                
+                // Ускоренная анимация: уменьшено время задержки и длительность
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 50 + index * 80); // Уменьшены задержки
+            });
+        });
+    </script>
+</body>
+</html>
